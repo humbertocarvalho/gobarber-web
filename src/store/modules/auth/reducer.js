@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 };
 
 export default function auth(state = INITIAL_STATE, action) {
+  console.tron.log(action.type);
   return produce(state, draft => {
     switch (action.type) {
       case '@auth/SIGN_IN_REQUEST': {
@@ -21,6 +22,11 @@ export default function auth(state = INITIAL_STATE, action) {
       }
       case '@auth/SIGN_FAILURE': {
         draft.loading = false;
+        break;
+      }
+      case '@auth/SIGN_OUT': {
+        draft.token = null;
+        draft.signed = false;
         break;
       }
       default:
